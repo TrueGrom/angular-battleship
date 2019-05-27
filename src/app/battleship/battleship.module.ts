@@ -10,6 +10,9 @@ import { SectorCellComponent } from './sector-cell/sector-cell.component';
   imports: [
     CommonModule
   ],
+  exports: [
+    BattlefieldComponent
+  ],
   declarations: [BattlefieldComponent, BattlefieldSectorComponent, SectorRowComponent, SectorCellComponent]
 })
 export class BattleshipModule { }
