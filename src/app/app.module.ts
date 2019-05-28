@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { BattleshipModule } from 'src/app/battleship/battleship.module';
+import { AppComponent } from '@app/app.component';
+import { BattlefieldModule } from '@battlefield/battlefield.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { BattleshipModule } from 'src/app/battleship/battleship.module';
   ],
   imports: [
     BrowserModule,
-    BattleshipModule
+    BattlefieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
