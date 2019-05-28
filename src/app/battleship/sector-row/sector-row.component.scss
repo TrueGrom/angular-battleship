@@ -1,0 +1,11 @@
+.sector-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.sector-cell-container {
+  &:first-child {
+    border-left: 1px solid black;
+  }
+  border-right: 1px solid black;
+}

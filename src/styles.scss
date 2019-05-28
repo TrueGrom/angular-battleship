@@ -5,3 +5,9 @@ html, body {
 body {
   margin: 0;
 }
+
+.square:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}

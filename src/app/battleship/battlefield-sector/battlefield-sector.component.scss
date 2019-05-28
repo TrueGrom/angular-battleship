@@ -1,0 +1,12 @@
+.sector {
+  display: flex;
+  flex-direction: column;
+}
+
+.sector-row-container {
+  &:first-child {
+    border-top: 1px solid black;
+  }
+  border-bottom: 1px solid black;
+}
+

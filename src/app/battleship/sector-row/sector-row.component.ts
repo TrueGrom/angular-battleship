@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+
+import { Cell } from 'src/app/battleship/cell';
 
 @Component({
   selector: 'app-sector-row',
@@ -7,10 +9,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectorRowComponent implements OnInit {
+  @Input() row: Cell[];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  trackByFn(index: number, cell: Cell) {
+    return cell.type;
   }
 
 }

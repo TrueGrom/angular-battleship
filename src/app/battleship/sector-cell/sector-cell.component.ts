@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Cell } from 'src/app/battleship/cell';
 
 @Component({
   selector: 'app-sector-cell',
@@ -7,6 +8,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectorCellComponent implements OnInit {
+  @Input() cell: Cell;
 
   constructor() { }
 
