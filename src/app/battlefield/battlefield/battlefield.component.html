@@ -1,0 +1,8 @@
+<div class="battlefield">
+  <div class="battlefield-sector-container">
+    <app-battlefield-sector [sector]="playerSector | async"></app-battlefield-sector>
+  </div>
+  <div class="battlefield-sector-container">
+    <app-battlefield-sector [sector]="opponentSector | async"></app-battlefield-sector>
+  </div>
+</div>

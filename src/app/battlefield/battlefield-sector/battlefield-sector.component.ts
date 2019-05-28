@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { Cell } from 'src/app/battleship/cell';
+import { Cell } from '@battlefield/cell';
 
 @Component({
   selector: 'app-battlefield-sector',

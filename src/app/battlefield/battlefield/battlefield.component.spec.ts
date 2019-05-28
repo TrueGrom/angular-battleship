@@ -1,20 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SectorCellComponent } from './sector-cell.component';
+import { BattlefieldComponent } from '@battlefield/battlefield/battlefield.component';
 
-describe('SectorCellComponent', () => {
-  let component: SectorCellComponent;
-  let fixture: ComponentFixture<SectorCellComponent>;
+
+describe('BattlefieldComponent', () => {
+  let component: BattlefieldComponent;
+  let fixture: ComponentFixture<BattlefieldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SectorCellComponent ]
+      declarations: [ BattlefieldComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SectorCellComponent);
+    fixture = TestBed.createComponent(BattlefieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
