@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GameService {
+
+  constructor() { }
+
+  startGame(): void {
+
+  }
+
+  restartGame(): void {
+
+  }
+}
