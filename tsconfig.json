@@ -1,7 +1,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "@env/*": ["environments/*"],
+      "@app/*": ["app/*"],
+      "@core/*": ["app/core/*"],
+      "@battlefield/*": ["app/battlefield/*"],
+      "@shared/*": ["app/shared/*"],
+      "@settings": ["app/settings.ts"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
