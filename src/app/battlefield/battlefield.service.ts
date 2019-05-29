@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Cell } from '@battlefield/cell';
-import { CombatService } from '@battlefield/combat.service';
+import { CombatService } from '@headquarters/combat.service';
 import { BattleCoordinates, Sector } from '@battlefield/types';
 import { AppSettings } from '@settings';
 

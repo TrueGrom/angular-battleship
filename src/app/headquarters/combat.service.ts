@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Cell } from '@battlefield/cell';
-import { CombatStrategy } from '@battlefield/combat-strategy';
+import { CombatStrategy } from '@app/headquarters/combat-strategy';
 import { BattleCoordinates, Sector } from '@battlefield/types';
 
 @Injectable({

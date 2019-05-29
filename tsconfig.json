@@ -8,7 +8,8 @@
       "@core/*": ["app/core/*"],
       "@battlefield/*": ["app/battlefield/*"],
       "@shared/*": ["app/shared/*"],
-      "@settings": ["app/settings.ts"]
+      "@settings": ["app/settings.ts"],
+      "@headquarters/*": ["app/headquarters/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
