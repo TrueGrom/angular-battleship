@@ -12,8 +12,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BattlefieldComponent implements OnInit {
-  playerSector: Observable<Sector>;
-  opponentSector: Observable<Sector>;
+  playerSector$: Observable<Sector>;
+  opponentSector$: Observable<Sector>;
 
   constructor(
     private battlefieldService: BattlefieldService
@@ -21,8 +21,8 @@ export class BattlefieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.playerSector = this.battlefieldService.playerSector;
-    this.opponentSector = this.battlefieldService.opponentSector;
+    this.playerSector$ = this.battlefieldService.playerSector$;
+    this.opponentSector$ = this.battlefieldService.opponentSector$;
   }
 
 }

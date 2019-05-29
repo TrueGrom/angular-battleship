@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { BattlefieldService } from '@battlefield/battlefield.service';
 
 import { Cell } from '@battlefield/cell';
+import { BattleCoordinates } from '@battlefield/types';
 
 @Component({
   selector: 'app-battlefield-sector',
@@ -10,10 +12,15 @@ import { Cell } from '@battlefield/cell';
 })
 export class BattlefieldSectorComponent implements OnInit {
   @Input() sector: Cell[][];
+  @Input() opponent: boolean;
 
-  constructor() { }
+  constructor(private battleFieldService: BattlefieldService) { }
 
   ngOnInit() {
+  }
+
+  onShot(coordinates: BattleCoordinates): void {
+    this.battleFieldService.fire(this.opponent, coordinates);
   }
 
 }

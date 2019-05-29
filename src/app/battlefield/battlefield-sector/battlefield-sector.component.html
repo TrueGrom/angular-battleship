@@ -1,3 +1,7 @@
 <div class="sector">
-  <app-sector-row class="sector-row-container" *ngFor="let row of sector" [row]="row"></app-sector-row>
+  <app-sector-row class="sector-row-container"
+                  *ngFor="let row of sector; index as index"
+                  [index]="index" [row]="row"
+                  (shot)="onShot($event)">
+  </app-sector-row>
 </div>
