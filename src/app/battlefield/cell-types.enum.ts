@@ -1,7 +1,6 @@
 export enum CellTypes {
   EMPTY,
-  SHIP_PART,
+  SHIP,
   MISS,
-  HIT,
-  UNKNOWN,
+  SUNK,
 }

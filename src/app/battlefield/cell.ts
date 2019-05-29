@@ -4,8 +4,13 @@ export class Cell {
   type: CellTypes;
   visible: boolean;
 
+  constructor({ type, visible = true }: { type: CellTypes, visible: boolean }) {
+    this.type = type;
+    this.visible = visible;
+  }
+
   static createCell(type: CellTypes): Cell {
-    return { type, visible: true };
+    return new Cell({ type, visible: true });
   }
 
   static createDefaultCell() {
@@ -13,6 +18,26 @@ export class Cell {
   }
 
   static createDefaultInvisibleCell(): Cell {
-    return { ...Cell.createDefaultCell(), visible: false };
+    return new Cell({ type: CellTypes.EMPTY, visible: false });
+  }
+
+  static createSunkCell(): Cell {
+    return Cell.createCell(CellTypes.SUNK);
+  }
+
+  static createMissedCell(): Cell {
+    return Cell.createCell(CellTypes.MISS);
+  }
+
+  isEmpty(): boolean {
+    return this.type === CellTypes.EMPTY;
+  }
+
+  isShip(): boolean {
+    return this.type === CellTypes.SHIP;
+  }
+
+  clone(): Cell {
+    return new Cell({ type: this.type, visible: this.visible });
   }
 }
