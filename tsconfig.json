@@ -9,7 +9,7 @@
       "@battlefield/*": ["app/battlefield/*"],
       "@shared/*": ["app/shared/*"],
       "@settings": ["app/settings.ts"],
-      "@headquarters/*": ["app/headquarters/*"]
+      "@opponent/*": ["app/opponent/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

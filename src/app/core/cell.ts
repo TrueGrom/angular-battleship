@@ -1,8 +1,8 @@
-import { CellTypes } from '@battlefield/cell-types.enum';
+import { CellTypes } from '@core/cell-types.enum';
 
 export class Cell {
-  type: CellTypes;
-  visible: boolean;
+  readonly type: CellTypes;
+  readonly visible: boolean;
 
   constructor({ type, visible = true }: { type: CellTypes, visible: boolean }) {
     this.type = type;
@@ -37,7 +37,25 @@ export class Cell {
     return this.type === CellTypes.SHIP;
   }
 
+  isMiss(): boolean {
+    return this.type === CellTypes.MISS;
+  }
+
+  isSunk(): boolean {
+    return this.type === CellTypes.SUNK;
+  }
+
   clone(): Cell {
     return new Cell({ type: this.type, visible: this.visible });
+  }
+
+  getShotResult(): Cell {
+    if (this.isEmpty()) {
+      return Cell.createMissedCell();
+    }
+    if (this.isShip()) {
+      return Cell.createSunkCell();
+    }
+    return this;
   }
 }
