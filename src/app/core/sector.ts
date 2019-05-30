@@ -49,7 +49,7 @@ export class Sector {
   getResultAfterShot(coordinates: TargetCoordinates): SectorPlacement {
     const sectorValue: SectorPlacement = this.placement;
     const target = Sector.getCellByCoordinates(sectorValue, coordinates);
-    const updatedSector = Sector.updateSector(sectorValue, coordinates, Cell.createSunkCell())//target.getShotResult());
+    const updatedSector = Sector.updateSector(sectorValue, coordinates, target.getShotResult());
     this.sector = updatedSector;
     return updatedSector;
   }
