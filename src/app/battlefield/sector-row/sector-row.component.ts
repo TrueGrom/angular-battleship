@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Cell } from '@battlefield/cell';
-import { BattleCoordinates } from '@battlefield/types';
+import { Cell } from '@core/cell';
+import { TargetCoordinates } from '@core/types';
 
 @Component({
   selector: 'app-sector-row',
@@ -12,7 +12,8 @@ import { BattleCoordinates } from '@battlefield/types';
 export class SectorRowComponent implements OnInit {
   @Input() index: number;
   @Input() row: Cell[];
-  @Output() shot: EventEmitter<BattleCoordinates> = new EventEmitter<BattleCoordinates>();
+  @Input() opponent: boolean;
+  @Output() shot: EventEmitter<TargetCoordinates> = new EventEmitter<TargetCoordinates>();
 
   constructor() { }
 

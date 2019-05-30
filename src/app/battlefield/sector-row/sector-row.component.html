@@ -1,7 +1,7 @@
 <div class="sector-row">
   <app-sector-cell class="sector-cell-container"
                    *ngFor="let cell of row; index as index; trackBy: trackByFn"
-                   [index]="index" [cell]="cell"
+                   [index]="index" [cell]="cell" [opponent]="opponent"
                    (shot)="onCellShot($event)">
   </app-sector-cell>
 </div>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { BattlefieldService } from '@battlefield/battlefield.service';
-import { Sector } from '@battlefield/types';
+import { GameService } from '@core/game.service';
+import { SectorPlacement } from '@core/types';
 
 import { Observable } from 'rxjs';
 
@@ -12,17 +12,17 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BattlefieldComponent implements OnInit {
-  playerSector$: Observable<Sector>;
-  opponentSector$: Observable<Sector>;
+  playerSector$: Observable<SectorPlacement>;
+  opponentSector$: Observable<SectorPlacement>;
 
   constructor(
-    private battlefieldService: BattlefieldService
+    private gameService: GameService
   ) {
   }
 
   ngOnInit() {
-    this.playerSector$ = this.battlefieldService.playerSector$;
-    this.opponentSector$ = this.battlefieldService.opponentSector$;
+    this.playerSector$ = this.gameService.playerSectorPlacement$;
+    this.opponentSector$ = this.gameService.opponentSectorPlacement$;
   }
 
 }

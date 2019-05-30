@@ -6,9 +6,22 @@
 .cell {
   display: flex;
   flex-grow: 1;
-  background-color: antiquewhite;
+  background-color: aqua;
+
+  &.invisible {
+    background-color: cadetblue;
+  }
 
   &:not(:last-child) {
     border-right: 1px solid black;
+  }
+
+  &.opponent:hover {
+    background-color: red;
+    cursor: pointer;
+  }
+
+  &.sunk {
+    background-color: black;
   }
 }
