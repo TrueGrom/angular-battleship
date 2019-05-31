@@ -8,8 +8,8 @@ import {
   getLshapedDirection,
   getNeighbors,
   getNextCell,
+  getNotUsedFromMatrix,
   getPossibleDirections,
-  getRandomCoordinates,
   getRandomItem
 } from '@helpers';
 
@@ -118,13 +118,8 @@ export class ShipService {
     return neighbors.every(neighbor => !this.isOccupiedCoordinates(neighbor));
   }
 
-  private getRandomNotOccupiedCoordinates(occupied: string[] = []): TargetCoordinates {
-    const coordinates = getRandomCoordinates();
-    const label = coordinates.join('-');
-    if (this.isOccupiedCoordinates(coordinates) || occupied.includes(label)) {
-      return this.getRandomNotOccupiedCoordinates([...occupied, label]);
-    }
-    return coordinates;
+  private getRandomNotOccupiedCoordinates(): TargetCoordinates {
+    return getNotUsedFromMatrix(this.coordinates);
   }
 
   private isOccupiedCoordinates([row, col]: TargetCoordinates): boolean {

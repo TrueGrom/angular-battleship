@@ -139,3 +139,13 @@ export function createCoordinatesMatrix(): boolean[][] {
   }
   return matrix;
 }
+
+export function getNotUsedFromMatrix(matrix: boolean[][], alreadyGenerated: string[] = []): TargetCoordinates {
+  const coordinates = getRandomCoordinates();
+  const [row, col] = coordinates;
+  const label = coordinates.join('-');
+  if (matrix[row][col] || alreadyGenerated.includes(label)) {
+    return getNotUsedFromMatrix(matrix, [...alreadyGenerated, label]);
+  }
+  return coordinates;
+}
