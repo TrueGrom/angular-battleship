@@ -9,7 +9,10 @@
       "@battlefield/*": ["app/battlefield/*"],
       "@shared/*": ["app/shared/*"],
       "@settings": ["app/settings.ts"],
-      "@opponent/*": ["app/opponent/*"]
+      "@opponent/*": ["app/opponent/*"],
+      "@ship/*": ["app/ship/*"],
+      "@helpers": ["app/utils/helpers.ts"],
+      "@constants": ["app/constants.ts"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
