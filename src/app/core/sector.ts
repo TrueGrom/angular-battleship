@@ -10,11 +10,11 @@ export class Sector {
   }
 
   static generateOpponentSector(): Sector {
-    return new Sector(Cell.createDefaultInvisibleCell());
+    return new Sector(Cell.createDefaultCell());
   }
 
   static generateOpponentInitialPlacement(): SectorPlacement {
-    return Sector.generateBaseSectorPlacement(Cell.createDefaultInvisibleCell());
+    return Sector.generateBaseSectorPlacement(Cell.createDefaultCell());
   }
 
   static generateBaseSectorPlacement(initialCell: Cell): SectorPlacement {
@@ -52,6 +52,10 @@ export class Sector {
     const updatedSector = Sector.updateSector(sectorValue, coordinates, target.getShotResult());
     this.sector = updatedSector;
     return updatedSector;
+  }
+
+  insertShip([row, cell]: TargetCoordinates): void {
+    this.sector[row][cell] = Cell.createShip();
   }
 
 }

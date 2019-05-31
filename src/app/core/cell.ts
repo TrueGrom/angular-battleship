@@ -2,27 +2,25 @@ import { CellTypes } from '@core/cell-types.enum';
 
 export class Cell {
   readonly type: CellTypes;
-  readonly visible: boolean;
 
-  constructor({ type, visible = true }: { type: CellTypes, visible: boolean }) {
+  constructor({ type }: { type: CellTypes }) {
     this.type = type;
-    this.visible = visible;
   }
 
   static createCell(type: CellTypes): Cell {
-    return new Cell({ type, visible: true });
+    return new Cell({ type });
   }
 
   static createDefaultCell() {
     return Cell.createCell(CellTypes.EMPTY);
   }
 
-  static createDefaultInvisibleCell(): Cell {
-    return new Cell({ type: CellTypes.EMPTY, visible: false });
-  }
-
   static createSunkCell(): Cell {
     return Cell.createCell(CellTypes.SUNK);
+  }
+
+  static createShip(): Cell {
+    return Cell.createCell(CellTypes.SHIP);
   }
 
   static createMissedCell(): Cell {
@@ -46,7 +44,7 @@ export class Cell {
   }
 
   clone(): Cell {
-    return new Cell({ type: this.type, visible: this.visible });
+    return new Cell({ type: this.type });
   }
 
   getShotResult(): Cell {

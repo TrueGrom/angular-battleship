@@ -4,6 +4,7 @@ import { Sector } from '@core/sector';
 import { SectorPlacement, TargetCoordinates } from '@core/types';
 import { BotOpponentStrategy } from '@opponent/bot-opponent-strategy';
 import { OpponentResult, OpponentStrategy } from '@opponent/opponent-strategy';
+import { ShipService } from '@ship/ship.service';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -18,7 +19,9 @@ export class GameService {
   private player: Sector;
   private strategy: OpponentStrategy;
 
-  constructor() {
+  constructor(
+    private shipService: ShipService,
+  ) {
     this.startGame();
     this.setStrategy(new BotOpponentStrategy());
   }
@@ -33,6 +36,7 @@ export class GameService {
     this.playerSectorPlacement = new BehaviorSubject(this.player.placement);
     this.playerSectorPlacement$ = this.playerSectorPlacement.asObservable();
     this.opponentSectorPlacement$ = this.opponentSectorPlacement.asObservable();
+    this.generateRandomPlayerShips();
   }
 
   shootAsPlayer(opponentCoordinates: TargetCoordinates) {
@@ -46,5 +50,12 @@ export class GameService {
   shootAsOpponent(coordinates: TargetCoordinates) {
     const shotResult: SectorPlacement = this.player.getResultAfterShot(coordinates);
     this.playerSectorPlacement.next(shotResult);
+  }
+
+  private generateRandomPlayerShips(): void {
+    const ships: TargetCoordinates[] = this.shipService.getRandomShipCoordinates();
+    for (const ship of ships) {
+      this.player.insertShip(ship);
+    }
   }
 }
