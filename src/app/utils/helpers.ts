@@ -129,15 +129,13 @@ export function getLshapedDirection(mainDirection: Direction): Direction {
   return Direction.TOP;
 }
 
-export function getReverseDirection(direction: Direction): Direction {
-  if (direction === Direction.TOP) {
-    return Direction.BOTTOM;
+export function createCoordinatesMatrix(): boolean[][] {
+  const matrix = [];
+  for (let i = 0; i < ROWS.length; i++) {
+    matrix[i] = [];
+    for (let j = 0; j < COLS.length; j++) {
+      matrix[i][j] = false;
+    }
   }
-  if (direction === Direction.RIGHT) {
-    return Direction.LEFT;
-  }
-  if (direction === Direction.BOTTOM) {
-    return Direction.TOP;
-  }
-  return Direction.RIGHT;
+  return matrix;
 }

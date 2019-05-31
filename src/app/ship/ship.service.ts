@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { COLS, ROWS } from '@constants';
 import { Direction } from '@core/common.enum';
 import { TargetCoordinates } from '@core/types';
 import {
+  createCoordinatesMatrix,
   getCoordinatesByDirection,
   getLshapedDirection,
   getNeighbors,
@@ -132,13 +132,7 @@ export class ShipService {
   }
 
   private initCoordinates(): void {
-    this.coordinates = [];
-    for (let i = 0; i < ROWS.length; i++) {
-      this.coordinates[i] = [];
-      for (let j = 0; j < COLS.length; j++) {
-        this.coordinates[i][j] = false;
-      }
-    }
+    this.coordinates = createCoordinatesMatrix();
   }
 
   private findPossibleCoordinates(start: TargetCoordinates, length: number): TargetCoordinates[] {
@@ -157,6 +151,5 @@ export class ShipService {
   private isFreeCoordinates(coordinates: TargetCoordinates[]): boolean {
     return coordinates.every(item => !this.isOccupiedCoordinates(item));
   }
-
 
 }
