@@ -2,6 +2,8 @@ import { Cell } from '@core/cell';
 import { SectorPlacement, TargetCoordinates } from '@core/types';
 import { AppSettings } from '@settings';
 
+import cloneDeep from 'lodash/cloneDeep';
+
 export class Sector {
   private sector: SectorPlacement;
 
@@ -43,19 +45,23 @@ export class Sector {
   }
 
   get placement(): SectorPlacement {
-    return this.sector;
+    return cloneDeep(this.sector);
   }
 
-  getResultAfterShot(coordinates: TargetCoordinates): SectorPlacement {
-    const sectorValue: SectorPlacement = this.placement;
-    const target = Sector.getCellByCoordinates(sectorValue, coordinates);
-    const updatedSector = Sector.updateSector(sectorValue, coordinates, target.getShotResult());
+  getPlacementAfterShot(coordinates: TargetCoordinates): SectorPlacement {
+    const shotResult = this.calculateHit(coordinates);
+    const updatedSector = Sector.updateSector(this.placement, coordinates, shotResult);
     this.sector = updatedSector;
     return updatedSector;
   }
 
   insertShip([row, cell]: TargetCoordinates): void {
     this.sector[row][cell] = Cell.createShip();
+  }
+
+  calculateHit(coordinates: TargetCoordinates): Cell {
+    const target = Sector.getCellByCoordinates(this.placement, coordinates);
+    return target.getShotResult();
   }
 
 }

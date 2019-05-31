@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Sector } from '@core/sector';
 
+import { Sector } from '@core/sector';
 import { SectorPlacement, TargetCoordinates } from '@core/types';
 import { BotOpponentStrategy } from '@opponent/bot-opponent-strategy';
 import { OpponentResult, OpponentStrategy } from '@opponent/opponent-strategy';
@@ -21,9 +21,10 @@ export class GameService {
 
   constructor(
     private shipService: ShipService,
+    private botOpponent: BotOpponentStrategy,
   ) {
     this.startGame();
-    this.setStrategy(new BotOpponentStrategy());
+    this.setStrategy(this.botOpponent);
   }
 
   setStrategy(strategy: OpponentStrategy): void {
@@ -32,11 +33,11 @@ export class GameService {
 
   startGame(): void {
     this.player = Sector.generatePlayerSector();
-    this.opponentSectorPlacement = new BehaviorSubject(Sector.generateOpponentInitialPlacement());
+    this.generateRandomPlayerShips();
     this.playerSectorPlacement = new BehaviorSubject(this.player.placement);
+    this.opponentSectorPlacement = new BehaviorSubject(Sector.generateOpponentInitialPlacement());
     this.playerSectorPlacement$ = this.playerSectorPlacement.asObservable();
     this.opponentSectorPlacement$ = this.opponentSectorPlacement.asObservable();
-    this.generateRandomPlayerShips();
   }
 
   shootAsPlayer(opponentCoordinates: TargetCoordinates) {
@@ -48,7 +49,7 @@ export class GameService {
   }
 
   shootAsOpponent(coordinates: TargetCoordinates) {
-    const shotResult: SectorPlacement = this.player.getResultAfterShot(coordinates);
+    const shotResult: SectorPlacement = this.player.getPlacementAfterShot(coordinates);
     this.playerSectorPlacement.next(shotResult);
   }
 
