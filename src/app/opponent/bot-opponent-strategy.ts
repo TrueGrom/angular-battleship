@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Cell } from '@core/cell';
 import { Sector } from '@core/sector';
 import { SectorPlacement, TargetCoordinates } from '@core/types';
-import { getRandomCoordinates } from '@helpers';
+import { createCoordinatesMatrix, getNotUsedFromMatrix } from '@helpers';
 import { OpponentResult, OpponentStrategy } from '@opponent/opponent-strategy';
 import { ShipService } from '@ship/ship.service';
 
@@ -16,10 +16,23 @@ import { Observable, of } from 'rxjs';
 export class BotOpponentStrategy implements OpponentStrategy {
   private sector: Sector;
   private visiblePlacement: SectorPlacement;
+  private usedCoordinates: boolean[][];
 
   constructor(
     private shipService: ShipService
   ) {
+    this.initStrategy();
+  }
+
+  nextStep(shotCoordinates: TargetCoordinates): Observable<OpponentResult> {
+    const backfire = this.takeAimAtPlayer();
+    const shotResult: Cell = this.sector.calculateHit(shotCoordinates);
+    this.visiblePlacement = Sector.updateSector(this.visiblePlacement, shotCoordinates, shotResult);
+    return of({backfire, sectorPlacement: this.visiblePlacement});
+  }
+
+  private initStrategy() {
+    this.usedCoordinates = createCoordinatesMatrix();
     this.sector = Sector.generateOpponentSector();
     this.visiblePlacement = this.sector.placement;
     const ships: TargetCoordinates[] = this.shipService.getRandomShipCoordinates();
@@ -28,14 +41,10 @@ export class BotOpponentStrategy implements OpponentStrategy {
     }
   }
 
-  nextStep(shotCoordinates: [number, number]): Observable<OpponentResult> {
-    const backfire: TargetCoordinates = this.takeAimAtPlayer();
-    const shotResult: Cell = this.sector.calculateHit(shotCoordinates);
-    this.visiblePlacement = Sector.updateSector(this.visiblePlacement, shotCoordinates, shotResult);
-    return of({ backfire, sectorPlacement: this.visiblePlacement });
-  }
-
   private takeAimAtPlayer(): TargetCoordinates {
-    return getRandomCoordinates();
+    const nextShot = getNotUsedFromMatrix(this.usedCoordinates);
+    const [row, col] = nextShot;
+    this.usedCoordinates[row][col] = true;
+    return nextShot;
   }
- }
+}
