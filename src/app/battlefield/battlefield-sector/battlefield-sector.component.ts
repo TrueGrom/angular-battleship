@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { TargetCoordinates } from '@core/types';
-import { Cell } from '@core/cell';
-import { GameService } from '@core/game.service';
+import { SectorPlacement } from '@core/types';
 
 @Component({
   selector: 'app-battlefield-sector',
@@ -10,17 +8,10 @@ import { GameService } from '@core/game.service';
   styleUrls: ['./battlefield-sector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BattlefieldSectorComponent implements OnInit {
-  @Input() sector: Cell[][];
+export class BattlefieldSectorComponent {
+  @Input() sector: SectorPlacement;
   @Input() opponent: boolean;
 
-  constructor(private gameService: GameService) { }
-
-  ngOnInit() {
-  }
-
-  onShot(coordinates: TargetCoordinates): void {
-    this.gameService.shootAsPlayer(coordinates);
-  }
+  constructor() { }
 
 }

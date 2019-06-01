@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Cell } from '@core/cell';
 import { TargetCoordinates } from '@core/types';
@@ -9,20 +9,12 @@ import { TargetCoordinates } from '@core/types';
   styleUrls: ['./sector-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectorRowComponent implements OnInit {
-  @Input() index: number;
+export class SectorRowComponent {
   @Input() row: Cell[];
   @Input() opponent: boolean;
   @Output() shot: EventEmitter<TargetCoordinates> = new EventEmitter<TargetCoordinates>();
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
-  onCellShot(cellIndex: number) {
-    this.shot.emit([this.index, cellIndex]);
-  }
 
   trackByFn(index: number, cell: Cell) {
     return cell.type;

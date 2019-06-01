@@ -4,6 +4,7 @@ import { GameService } from '@core/game.service';
 import { SectorPlacement } from '@core/types';
 
 import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'app-battlefield',
@@ -21,8 +22,8 @@ export class BattlefieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.playerSector$ = this.gameService.playerSectorPlacement$;
-    this.opponentSector$ = this.gameService.opponentSectorPlacement$;
+    this.playerSector$ = this.gameService.state$.pipe(pluck('playerSector'));
+    this.opponentSector$ = this.gameService.state$.pipe(pluck('opponentSector'));
   }
 
 }

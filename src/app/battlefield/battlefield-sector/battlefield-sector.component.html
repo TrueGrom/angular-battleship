@@ -1,7 +1,6 @@
 <div class="sector">
   <app-sector-row class="sector-row-container"
-                  *ngFor="let row of sector; index as index"
-                  [index]="index" [row]="row" [opponent]="opponent"
-                  (shot)="onShot($event)">
+                  *ngFor="let row of sector"
+                  [row]="row" [opponent]="opponent">
   </app-sector-row>
 </div>

@@ -1,10 +1,18 @@
 .battlefield {
   display: flex;
   flex-direction: row;
-  padding: 2%;
+  padding: 0 2%;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
 }
 
 .battlefield-sector-container {
   width: 100%;
   padding: 2%;
+}
+
+.player-title {
+  text-align: center;
 }
