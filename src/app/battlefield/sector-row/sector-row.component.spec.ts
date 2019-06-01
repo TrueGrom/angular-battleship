@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SectorCellComponent } from '@battlefield/sector-cell/sector-cell.component';
 import { SectorRowComponent } from '@battlefield/sector-row/sector-row.component';
 
 describe('SectorRowComponent', () => {
@@ -8,7 +9,10 @@ describe('SectorRowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SectorRowComponent ]
+      declarations: [
+        SectorRowComponent,
+        SectorCellComponent,
+      ]
     })
     .compileComponents();
   }));
