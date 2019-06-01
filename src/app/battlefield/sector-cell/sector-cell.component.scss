@@ -6,22 +6,36 @@
 .cell {
   display: flex;
   flex-grow: 1;
-  background-color: aqua;
-
-  &.invisible {
-    background-color: cadetblue;
-  }
 
   &:not(:last-child) {
     border-right: 1px solid black;
   }
 
-  &.opponent:hover {
-    background-color: red;
+  &.empty:hover {
+    background-color: orange;
     cursor: pointer;
   }
 
+  &.empty {
+    background-color: aqua;
+  }
+
   &.sunk {
+    background-color: red;
+    background-image: url("/assets/img/sunk.png");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &.miss {
+    background-color: lightblue;
+    background-image: url("/assets/img/miss.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+  }
+
+  &.ship {
     background-color: black;
   }
 }

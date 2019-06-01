@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 
 import { Cell } from '@core/cell';
-
-import { fromEvent, Subscription } from 'rxjs';
+import { GameService } from '@core/game.service';
 
 @Component({
   selector: 'app-sector-cell',
@@ -10,30 +9,15 @@ import { fromEvent, Subscription } from 'rxjs';
   styleUrls: ['./sector-cell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectorCellComponent implements OnInit, OnChanges, OnDestroy {
+export class SectorCellComponent implements OnChanges {
   currentClass: string;
 
-  @Input() index: number;
   @Input() cell: Cell;
   @Input() opponent: boolean;
-  @Output() shot: EventEmitter<number> = new EventEmitter<number>();
-
-  private clickSubscription: Subscription;
 
   constructor(
-    private elementRef: ElementRef,
-  ) { }
-
-  ngOnInit() {
-    this.clickSubscription = fromEvent(this.elementRef.nativeElement, 'click')
-      .subscribe(() => this.fire());
-  }
-
-  ngOnDestroy() {
-    if (this.clickSubscription) {
-      this.clickSubscription.unsubscribe();
-    }
-  }
+    private gameService: GameService,
+  ) {}
 
   ngOnChanges() {
     this.currentClass = this.getClass();
@@ -53,7 +37,9 @@ export class SectorCellComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private fire(): void {
-    this.shot.emit(this.index);
+    if (this.opponent && !this.gameService.isStopped()) {
+      this.gameService.shootAsPlayer(this.cell.coordinates);
+    }
   }
 
 }

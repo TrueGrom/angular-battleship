@@ -1,1 +1,1 @@
-<div class="cell square" [ngClass]="{'invisible': !cell.visible, 'opponent': opponent}"></div>
+<div class="cell square" [ngClass]="currentClass" (click)="fire()"></div>
