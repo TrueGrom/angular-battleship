@@ -4,3 +4,9 @@ export enum Direction {
   BOTTOM,
   LEFT
 }
+
+export enum Players {
+  Player = 'Player',
+  Opponent = 'Opponent',
+  None = 'None'
+}

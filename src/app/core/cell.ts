@@ -1,10 +1,19 @@
 import { CellTypes } from '@core/cell-types.enum';
+import { TargetCoordinates } from '@core/types';
 
 export class Cell {
   readonly type: CellTypes;
+  private _coordinates: TargetCoordinates;
 
   constructor({ type }: { type: CellTypes }) {
     this.type = type;
+  }
+
+  static withCoordinates(coordinates: TargetCoordinates): Function {
+    return function (cell: Cell) {
+      cell.coordinates = coordinates;
+      return cell;
+    };
   }
 
   static createCell(type: CellTypes): Cell {
@@ -25,6 +34,14 @@ export class Cell {
 
   static createMissedCell(): Cell {
     return Cell.createCell(CellTypes.MISS);
+  }
+
+  get coordinates(): TargetCoordinates {
+    return this._coordinates;
+  }
+
+  set coordinates(value: TargetCoordinates) {
+    this._coordinates = value;
   }
 
   isEmpty(): boolean {
@@ -49,10 +66,10 @@ export class Cell {
 
   getShotResult(): Cell {
     if (this.isEmpty()) {
-      return Cell.createMissedCell();
+      return Cell.withCoordinates(this.coordinates)(Cell.createMissedCell());
     }
     if (this.isShip()) {
-      return Cell.createSunkCell();
+      return Cell.withCoordinates(this.coordinates)(Cell.createSunkCell());
     }
     return this;
   }

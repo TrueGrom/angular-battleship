@@ -8,4 +8,5 @@ export interface OpponentResult {
 
 export interface OpponentStrategy {
   nextStep(shotCoordinates: TargetCoordinates): Observable<OpponentResult>;
+  finishGame(): void;
 }

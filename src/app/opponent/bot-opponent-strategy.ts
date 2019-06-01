@@ -27,8 +27,12 @@ export class BotOpponentStrategy implements OpponentStrategy {
   nextStep(shotCoordinates: TargetCoordinates): Observable<OpponentResult> {
     const backfire = this.takeAimAtPlayer();
     const shotResult: Cell = this.sector.calculateHit(shotCoordinates);
-    this.visiblePlacement = Sector.updateSector(this.visiblePlacement, shotCoordinates, shotResult);
+    this.visiblePlacement = Sector.updateSector(this.visiblePlacement, shotResult);
     return of({backfire, sectorPlacement: this.visiblePlacement});
+  }
+
+  finishGame(): void {
+    this.initStrategy();
   }
 
   private initStrategy() {

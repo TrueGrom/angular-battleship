@@ -79,7 +79,7 @@ export class ShipService {
       if (additionalDirections.includes(getLshapedDirection(currentDirection))) {
         const mainCoordinates = getCoordinatesByDirection(coordinates, mainLength, currentDirection);
         const additionalCoordinates = getCoordinatesByDirection(coordinates, 2, getLshapedDirection(currentDirection));
-        const allCoordinates = [...mainCoordinates, ...additionalCoordinates];
+        const allCoordinates = [...mainCoordinates, ...additionalCoordinates.slice(1)];
         this.addOccupiedCoordinates(...allCoordinates);
         return allCoordinates;
       }
