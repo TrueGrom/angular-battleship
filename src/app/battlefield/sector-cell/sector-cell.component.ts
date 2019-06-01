@@ -23,6 +23,12 @@ export class SectorCellComponent implements OnChanges {
     this.currentClass = this.getClasses();
   }
 
+  fire(): void {
+    if (this.opponent && !this.gameService.isStopped()) {
+      this.gameService.shootAsPlayer(this.cell.coordinates);
+    }
+  }
+
   private getClasses(): string {
     const classes = [];
     if (this.opponent) {
@@ -38,12 +44,6 @@ export class SectorCellComponent implements OnChanges {
       classes.push('empty');
     }
     return classes.join(' ');
-  }
-
-  private fire(): void {
-    if (this.opponent && !this.gameService.isStopped()) {
-      this.gameService.shootAsPlayer(this.cell.coordinates);
-    }
   }
 
 }
