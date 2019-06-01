@@ -20,20 +20,24 @@ export class SectorCellComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
-    this.currentClass = this.getClass();
+    this.currentClass = this.getClasses();
   }
 
-  private getClass(): string {
+  private getClasses(): string {
+    const classes = [];
+    if (this.opponent) {
+      classes.push('opponent');
+    }
     if (this.cell.isSunk()) {
-      return 'sunk';
+      classes.push('sunk');
+    } else if (this.cell.isShip()) {
+      classes.push('ship');
+    } else if (this.cell.isMiss()) {
+      classes.push('miss');
+    } else if (this.cell.isEmpty()) {
+      classes.push('empty');
     }
-    if (this.cell.isShip()) {
-      return 'ship';
-    }
-    if (this.cell.isMiss()) {
-      return 'miss';
-    }
-    return 'empty';
+    return classes.join(' ');
   }
 
   private fire(): void {

@@ -11,7 +11,7 @@
     border-right: 1px solid black;
   }
 
-  &.empty:hover {
+  &.opponent.empty:hover {
     background-color: orange;
     cursor: pointer;
   }
