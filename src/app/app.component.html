@@ -1,4 +1,5 @@
 <div class="container">
-  <app-battlefield></app-battlefield>
+  <app-game-over class="game-over-container" *ngIf="stopped$ | async"></app-game-over>
+  <app-battlefield class="battlefield-container"></app-battlefield>
 </div>
 
